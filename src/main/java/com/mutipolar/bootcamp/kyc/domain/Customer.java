@@ -21,4 +21,6 @@ public class Customer {
     private String email;
     private String phoneNumber;
     private LocalDate dateOfBirth;
+    private Address address;
+    private MembershipStatus membershipStatus;
 }
