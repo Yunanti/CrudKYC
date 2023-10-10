@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @ToString
 @EqualsAndHashCode
 @Document
-public class Todo {
+public class Customer {
     @Id
     private String id;
     private String nik;

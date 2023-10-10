@@ -1,7 +1,7 @@
 package com.mutipolar.bootcamp.kyc.controller;
 
-import com.mutipolar.bootcamp.kyc.domain.Todo;
-import com.mutipolar.bootcamp.kyc.service.TodoService;
+import com.mutipolar.bootcamp.kyc.domain.Customer;
+import com.mutipolar.bootcamp.kyc.service.CustService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -16,18 +16,18 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/kyc")
 //@Validated
-public class TodoController {
-    private final TodoService todoService;
+public class CustController {
+    private final CustService custService;
 
     @Autowired
-    public TodoController(TodoService todoService) {
-        this.todoService = todoService;
+    public CustController(CustService custService) {
+        this.custService = custService;
     }
 
 
     @PostMapping
-    public Todo createTodo(@RequestBody Todo todo){
-        return todoService.createOrUpdateTodo(todo);
+    public Customer createTodo(@RequestBody Customer customer){
+        return custService.createOrUpdateCust(customer);
     }
 //    public ResponseEntity<?> createTodo(@Valid @RequestBody Todo todo,
 //                                        BindingResult bindingResult) {
@@ -46,28 +46,28 @@ public class TodoController {
 //    }
 
     @GetMapping
-    public List<Todo> getAllTodos(){
-        return todoService.getAllTodos();
+    public List<Customer> getAllCusts(){
+        return custService.getAllCusts();
     }
 
     //    get todo by id lewat pathvariable/segment
     @GetMapping("/{id}")
-    public ResponseEntity<Todo> getTodoById(@PathVariable String id){
-        Optional<Todo> todo = todoService.getTodoById((id));
+    public ResponseEntity<Customer> getTodoById(@PathVariable String id){
+        Optional<Customer> todo = custService.getCustById((id));
         return todo.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     //    edit todo by id
     @PutMapping("/{id}")
-    public Todo updateTodo(@PathVariable String id, @RequestBody Todo todo){
-        todo.setId(id);
-        return todoService.createOrUpdateTodo(todo);
+    public Customer updateCust(@PathVariable String id, @RequestBody Customer customer){
+        customer.setId(id);
+        return custService.createOrUpdateCust(customer);
     }
 
     //    delete todo
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTodoId(@PathVariable String id){
-        todoService.deleteTodoById(id);
+    public ResponseEntity<Void> deleteCustId(@PathVariable String id){
+        custService.deleteCustById(id);
         return ResponseEntity.noContent().build();
     }
 }
