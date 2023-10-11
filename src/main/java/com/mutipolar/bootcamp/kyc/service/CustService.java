@@ -36,4 +36,12 @@ public class CustService {
     public void deleteCustById(String id){
         custRepository.deleteById(id);
     }
+
+    public Optional<Customer> findByNikCaseInsensitive(String nik){
+        return custRepository.findByNikCaseInsensitive(nik);
+    }
+
+    public List<Customer> findByFirstName(String firstName){
+        return custRepository.findByFistName(firstName);
+    }
 }
